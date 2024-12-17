@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      .card {
+        max-width: 300px;
+        padding: 1rem;
+        border: 2px solid;
+        border-radius: 0.5rem;
+        text-align: center;
+      }
+      .read-more {
+        border: 1rem solid;
+        background-color: black;
+        color: white;
+        display: inline-block;
+        width: 100%;
+        padding: 1rem;
+        text-align: center;
+        border-radius: 3em;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="card-wrapper">
+      <!-- <div class="card">
+            <i class="fa-brands fa-twitter"></i>
+            <h3>Twitter</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam,
+              assumenda voluptatum enim vero laudantium placeat eos tempora?
+            </p>
+      
+            <a href="#" class="read-more">Read More</a>
+          </div> -->
+    </div>
+
+    <hr />
+    <h1>Result: <span class="result">0</span></h1>
+    <input type="number" name="" id="first" />
+    <input type="number" name="" id="second" />
+    <button class="add">sum</button>
+    <button class="subtruct">subtruct</button>
+
+    <script>
+      const res = document.querySelector(".result");
+      const firstInput = document.querySelector("#first");
+      const secondInput = document.querySelector("#second");
+      const addBtn = document.querySelector(".add");
+      const subtructBtn = document.querySelector(".subtruct");
+
+      addBtn.addEventListener("click", () => {
+        res.textContent = +firstInput.value + +secondInput.value;
+      });
+      subtructBtn.addEventListener("click", () => {
+        res.textContent = +firstInput.value - +secondInput.value;
+      });
+    </script>
+    <script>
+      const cardWrapper = document.querySelector(".card-wrapper");
+
+      const arr = [{}, {}, {}];
+      const createCard = (info) => {
+        const card = document.createElement("div");
+        const icon = document.createElement("i");
+        const heading = document.createElement("h2");
+        const parag = document.createElement("p");
+        const readMore = document.createElement("a");
+
+        card.style.maxWidth = "300px";
+        card.style.display = "flex";
+        card.style.flexDirection = "column";
+        card.style.rowGap = "1rem";
+        card.style.padding = "1rem";
+        card.style.border = "2px solid";
+        card.style.borderRadius = "1rem";
+        card.style.textAlign = "center";
+
+        heading.textContent = "Twitter";
+
+        icon.className = "fa-brands fa-twitter";
+        icon.style.fontSize = "2.5rem";
+        parag.textContent =
+          "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquam,  assumenda voluptatum enim vero laudantium placeat eos tempora?";
+
+        readMore.textContent = "Read More";
+        readMore.setAttribute("href", "#");
+        readMore.style.backgroundColor = "#000";
+        readMore.style.display = "inline-block";
+        readMore.style.width = "100%";
+        readMore.style.padding = "1rem 0";
+        readMore.style.borderRadius = "1rem";
+        readMore.style.color = "#fff";
+
+        card.append(icon, heading, parag, readMore);
+        cardWrapper.appendChild(card);
+      };
+
+      createCard();
+    </script>
+  </body>
+</html>

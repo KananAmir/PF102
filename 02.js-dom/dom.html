@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: space-between;
+      }
+      .cards .card {
+        width: 30%;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .btn.btn-danger {
+        background-color: red;
+        color: white;
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+      }
+      .box {
+        background-color: red;
+        display: none;
+      }
+      .show {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="main">
+      <p class="note">This is a note!</p>
+    </div>
+
+    <hr />
+    <ul id="menu">
+      hello
+      <li class="first">Home</li>
+      <li>Products</li>
+      <li class="current">Customer Support</li>
+      <li>Careers</li>
+      <li>Investors</li>
+      <li>News</li>
+      <li class="last">About Us</li>
+    </ul>
+
+    <div class="outer wrapper">
+      <div class="">
+        <p class="middle">
+          <span class="inner">
+            <p class="parag">Lorem ipsum dolor sit amet.</p>
+          </span>
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+      <h2>test</h2>
+    </div>
+
+    <hr />
+
+    <div class="container">
+      <div class="cards"></div>
+    </div>
+    <hr />
+    <div id="note">
+      JavaScript textContent Demo!
+      <span style="display: none">Hidden Text!</span>
+      <!-- my comment -->
+    </div>
+
+    <div class="boxes"></div>
+
+    <hr />
+
+    <button title="click btn" class="btn btn-click">Click</button>
+
+    <div class="box">
+      <p>Lorem, ipsum dolor.</p>
+    </div>
+
+    <button class="toggle">toggle</button>
+    <script src="./assets/js/dom.js"></script>
+  </body>
+</html>
