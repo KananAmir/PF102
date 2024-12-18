@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./assets/js/events.js" defer></script>
+    <title>JS DOM events</title>
+    <style>
+      .outer {
+        border: 2px solid;
+        padding: 2rem;
+      }
+      .inner {
+        border: 2px solid orange;
+        padding: 2rem;
+      }
+
+      .box {
+        background-color: red;
+        width: 100px;
+        height: 100px;
+      }
+
+      body {
+        background-color: rgb(255, 165, 0);
+      }
+    </style>
+  </head>
+  <body>
+    <button class="click">click me</button>
+
+    <div class="outer">
+      <div class="inner">
+        <button class="btn">click</button>
+      </div>
+    </div>
+
+    <hr />
+    <div class="box"></div>
+
+    <hr />
+    <input type="search" placeholder="search here.." id="search" />
+
+    <button class="focus">focus</button>
+
+    <hr />
+
+    <form class="user-form">
+      <fieldset
+        style="
+          max-width: 500px;
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        "
+      >
+        <legend>user form</legend>
+        <input type="text" name="" id="username" placeholder="username" />
+        <input type="text" name="" id="email" placeholder="email" />
+        <input type="text" name="" id="password" placeholder="password" />
+        <button type="submit">Submit</button>
+      </fieldset>
+    </form>
+  </body>
+</html>
