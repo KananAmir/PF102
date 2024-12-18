@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess the Number</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      input,
+      button {
+        padding: 10px;
+        margin: 10px;
+        font-size: 16px;
+      }
+      #message {
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Guess the Number!</h1>
+    <p>Try to guess the number between 1 and 100.</p>
+    <input type="number" id="guessInput" placeholder="Enter your guess" />
+    <button id="guessButton">Guess</button>
+    <button id="resetButton">Reset</button>
+    <p id="message"></p>
+    <p id="attempts">Attempts: 0</p>
+
+    <script>
+      let randomNumber = Math.floor(Math.random() * 100) + 1;
+      let attempts = 0;
+
+      const guessInput = document.getElementById("guessInput");
+      const guessButton = document.getElementById("guessButton");
+      const resetButton = document.getElementById("resetButton");
+      const message = document.getElementById("message");
+      const attemptsDisplay = document.getElementById("attempts");
+
+      guessButton.addEventListener("click", () => {
+        const userGuess = +guessInput.value;
+
+        if (userGuess <= 100 && userGuess >= 0) {
+          attempts++;
+          if (userGuess === randomNumber) {
+            message.textContent = `Correct! The number was ${randomNumber}.`;
+            message.style.color = "green";
+            // guessButton.setAttribute("disabled", true);
+            guessButton.disabled = true;
+          } else if (userGuess > randomNumber) {
+            message.textContent = "Too high! Try again.";
+            message.style.color = "red";
+          } else if (userGuess < randomNumber) {
+            message.textContent = "Too low! Try again.";
+            message.style.color = "red";
+          }
+        } else {
+          message.textContent = "You can only enter 1 to 100";
+          message.style.color = "red";
+        }
+
+        attemptsDisplay.textContent = `Attempts: ${attempts}`;
+        guessInput.value = "";
+        guessInput.focus();
+      });
+
+      resetButton.addEventListener("click", () => {
+        randomNumber = Math.floor(Math.random() * 100) + 1;
+        attempts = 0;
+        message.textContent = "";
+        attemptsDisplay.textContent = `Attempts: ${attempts}`;
+        guessInput.value = "";
+        guessButton.disabled = false;
+      });
+    </script>
+  </body>
+</html>

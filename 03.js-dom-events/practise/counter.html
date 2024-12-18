@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Click Counter</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin-top: 50px;
+      }
+      button,
+      input {
+        padding: 10px 20px;
+        margin: 10px;
+        font-size: 18px;
+      }
+      #counter {
+        font-size: 24px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Counter</h1>
+    <button id="incrementButton">Increment</button>
+    <button id="decrementButton">Decrement</button>
+    <button id="resetButton">Reset</button>
+    <br />
+    <input type="number" id="inputValue" placeholder="Enter a value" />
+    <button id="addValueButton">Increment by Input Value</button>
+    <p id="counter">Count: 0</p>
+
+    <script>
+      let count = 0;
+
+      const counterDisplay = document.getElementById("counter");
+      const incrementButton = document.getElementById("incrementButton");
+      const decrementButton = document.getElementById("decrementButton");
+      const resetButton = document.getElementById("resetButton");
+      const inputValue = document.getElementById("inputValue");
+      const addValueButton = document.getElementById("addValueButton");
+
+      incrementButton.addEventListener("click", () => {
+        count++;
+        updateCounter();
+      });
+
+      decrementButton.addEventListener("click", () => {
+        count--;
+        updateCounter();
+      });
+
+      resetButton.addEventListener("click", () => {
+        count = 0;
+        updateCounter();
+      });
+
+      addValueButton.addEventListener("click", () => {
+        const value = Number(inputValue.value);
+        if (!isNaN(value)) {
+          count += value;
+          updateCounter();
+        } else {
+          alert("Please enter a valid number!");
+        }
+      });
+
+      function updateCounter() {
+        counterDisplay.textContent = `Count: ${count}`;
+      }
+    </script>
+  </body>
+</html>
