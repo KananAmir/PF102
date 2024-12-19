@@ -47,26 +47,85 @@ function resetForm() {
 
 const tBody = document.querySelector("tbody");
 
+// function drawTable(array) {
+//   tBody.innerHTML = "";
+//   array.forEach((element) => {
+//     const trElem = document.createElement("tr");
+//     trElem.innerHTML = `
+//         <td>${element.id}</td>
+//         <td>${element.username}</td>
+//         <td>${element.email}</td>
+//         <td>${element.password}</td>
+//         <td><button class="btn btn-danger delete" data-id="${element.id}">delete</button></td>
+//     `;
+//     tBody.append(trElem);
+//   });
+//   const allDeleteBtns = document.querySelectorAll(".delete");
+
+//   allDeleteBtns.forEach((btn) => {
+//     btn.addEventListener("click", (e) => {
+//       //   console.log(e.target.closest("tr"));
+//       //   e.target.closest("tr").remove();
+
+//       Swal.fire({
+//         title: "Are you sure to delete?",
+//         text: "You won't be able to revert this!",
+//         icon: "warning",
+//         showCancelButton: true,
+//         confirmButtonColor: "#3085d6",
+//         cancelButtonColor: "#d33",
+//         confirmButtonText: "Yes, delete it!",
+//       }).then((result) => {
+//         if (result.isConfirmed) {
+//           const id = btn.getAttribute("data-id");
+
+//           const idx = users.findIndex((q) => q.id == id);
+//           //   console.log(idx);
+//           users.splice(idx, 1);
+//           drawTable(users);
+
+//           Swal.fire({
+//             title: "Deleted!",
+//             text: "Your file has been deleted.",
+//             icon: "success",
+//           });
+//         }
+//       });
+//     });
+//   });
+// }
+
 function drawTable(array) {
   tBody.innerHTML = "";
   array.forEach((element) => {
     const trElem = document.createElement("tr");
-    trElem.innerHTML = `
-        <td>${element.id}</td>
-        <td>${element.username}</td>
-        <td>${element.email}</td>
-        <td>${element.password}</td>
-        <td><button class="btn btn-danger delete" data-id="${element.id}">delete</button></td>
-    `;
-    tBody.append(trElem);
-  });
-  const allDeleteBtns = document.querySelectorAll(".delete");
+    // trElem.innerHTML = `
+    //     <td>${element.id}</td>
+    //     <td>${element.username}</td>
+    //     <td>${element.email}</td>
+    //     <td>${element.password}</td>
+    //     <td><button class="btn btn-danger delete" data-id="${element.id}">delete</button></td>
+    // `;
 
-  allDeleteBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
-      //   console.log(e.target.closest("tr"));
-      //   e.target.closest("tr").remove();
+    const tdElemId = document.createElement("td");
+    tdElemId.textContent = element.id;
 
+    const tdElemUsername = document.createElement("td");
+    tdElemUsername.textContent = element.username;
+
+    const tdElemEmail = document.createElement("td");
+    tdElemEmail.textContent = element.email;
+
+    const tdElemPassword = document.createElement("td");
+    tdElemPassword.textContent = element.password;
+
+    const tdElemActions = document.createElement("td");
+    const deleteBtn = document.createElement("button");
+
+    deleteBtn.textContent = "delete";
+    deleteBtn.className = "btn btn-danger delete";
+
+    deleteBtn.addEventListener("click", (e) => {
       Swal.fire({
         title: "Are you sure to delete?",
         text: "You won't be able to revert this!",
@@ -77,9 +136,7 @@ function drawTable(array) {
         confirmButtonText: "Yes, delete it!",
       }).then((result) => {
         if (result.isConfirmed) {
-          const id = btn.getAttribute("data-id");
-
-          const idx = users.findIndex((q) => q.id == id);
+          const idx = users.findIndex((q) => q.id == element.id);
           //   console.log(idx);
           users.splice(idx, 1);
           drawTable(users);
@@ -92,5 +149,14 @@ function drawTable(array) {
         }
       });
     });
+    tdElemActions.append(deleteBtn);
+    trElem.append(
+      tdElemId,
+      tdElemUsername,
+      tdElemEmail,
+      tdElemPassword,
+      tdElemActions
+    );
+    tBody.append(trElem);
   });
 }
