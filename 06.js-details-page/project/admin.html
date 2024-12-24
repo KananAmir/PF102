@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- bootstrap cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <header>
+      <div class="container">
+        <div class="header">
+          <nav>
+            <ul>
+              <li>
+                <a href="index.html">Products</a>
+              </li>
+              <li>
+                <a href="add-product.html">Add Product</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header> -->
+
+    <div class="container">
+      <h2 class="text-center my-4">Product Add Form</h2>
+      <form class="w-50 m-auto" id="add-product">
+        <div class="mb-3">
+          <label for="img-url" class="form-label">Image Url</label>
+          <input type="url" class="form-control" id="img-url" />
+          <span class="image-url-error text-danger"></span>
+        </div>
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" />
+          <span class="title-error text-danger"></span>
+        </div>
+        <div class="mb-3">
+          <label for="desc" class="form-label">Desc</label>
+          <input type="text" class="form-control" id="desc" />
+          <span class="desc-error text-danger"></span>
+        </div>
+        <div class="mb-3">
+          <label for="price" class="form-label">Price</label>
+          <input type="text" class="form-control" id="price" />
+          <span class="price-error text-danger"></span>
+        </div>
+        <div class="mb-3">
+          <select
+            id="category-select"
+            class="form-select"
+            aria-label="Default select example"
+          >
+            <option selected>Select Category</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <div class="container">
+      <h1 class="text-center my-5">Products</h1>
+
+      <div class="container">
+        <div class="search-sort d-flex justify-content-between">
+          <input
+            type="search"
+            class="form-control w-25"
+            placeholder="search product.."
+            id="search"
+          />
+          <button class="btn btn-warning sort-btn">Sort Asc</button>
+
+          <div class="d-flex">
+            <select id="sort" class="form-select">
+              <option value="default">default</option>
+              <option value="asc">sort by price asc</option>
+              <option value="desc">sort by price desc</option>
+            </select>
+          </div>
+          <div class="d-flex">
+            <select id="category" class="form-select">
+              <!-- <option value="default">default</option>
+              <option value="asc">sort by price asc</option>
+              <option value="desc">sort by price desc</option> -->
+            </select>
+          </div>
+        </div>
+      </div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/admin.js" type="module"></script>
+  </body>
+</html>

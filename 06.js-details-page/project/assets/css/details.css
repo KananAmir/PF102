@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.product-details img {
+  width: 90%;
+}
+
+.swiper-wrapper img {
+  width: 100%;
+}

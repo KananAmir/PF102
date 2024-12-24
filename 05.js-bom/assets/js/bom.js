@@ -1,3 +1,4 @@
+import { products } from "../data/index.js";
 // DOM - document object model
 // BOM - browser object model
 
@@ -108,28 +109,50 @@ window.addEventListener("load", () => {
   getCurrentTime();
 });
 
-function getCurrentTime() {
-  const date = new Date();
-  //   console.log(date.getHours());
-  //   console.log(date.getMinutes());
-  //   console.log(date.getSeconds());
-  if (date.getSeconds() < 10) {
-    seconds.textContent = `0${date.getSeconds()}`;
-  } else {
-    seconds.textContent = `${date.getSeconds()}`;
-  }
-  if (date.getMinutes() < 10) {
-    minutes.textContent = `0${date.getMinutes()}`;
-  } else {
-    minutes.textContent = `${date.getMinutes()}`;
-  }
-  if (date.getHours() < 10) {
-    hours.textContent = `0${date.getHours()}`;
-  } else {
-    hours.textContent = `${date.getHours()}`;
-  }
-}
+// function getCurrentTime() {
+//   const date = new Date();
+//   //   console.log(date.getHours());
+//   //   console.log(date.getMinutes());
+//   //   console.log(date.getSeconds());
+//   if (date.getSeconds() < 10) {
+//     seconds.textContent = `0${date.getSeconds()}`;
+//   } else {
+//     seconds.textContent = `${date.getSeconds()}`;
+//   }
+//   if (date.getMinutes() < 10) {
+//     minutes.textContent = `0${date.getMinutes()}`;
+//   } else {
+//     minutes.textContent = `${date.getMinutes()}`;
+//   }
+//   if (date.getHours() < 10) {
+//     hours.textContent = `0${date.getHours()}`;
+//   } else {
+//     hours.textContent = `${date.getHours()}`;
+//   }
+// }
 
+// setInterval(() => {
+//   getCurrentTime();
+// }, 1000);
+
+const animatedText = document.querySelector(".wrapper .text");
+
+// let positonValue = 10;
+// setInterval(() => {
+//   if (positonValue == 420) {
+//     positonValue = 0;
+//   }
+
+//   positonValue += 10;
+//   animatedText.style.left = `${positonValue}px`;
+// }, 300);
+
+const slideImage = document.querySelector(".slide");
+
+let currentIndex = 0;
+
+slideImage.src = products[0].image;
 setInterval(() => {
-  getCurrentTime();
+  currentIndex++;
+  slideImage.src = products[currentIndex % products.length].image;
 }, 1000);

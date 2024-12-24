@@ -8,6 +8,8 @@ const errorMessage = document.querySelector(".error-message");
 // const todos = [];
 let todos = [];
 
+showNoTodosMessage();
+showPendingCount();
 function handleAddTodo() {
   if (todoInput.value) {
     const todo = {
@@ -23,6 +25,8 @@ function handleAddTodo() {
     todoInput.classList.remove("border-danger");
 
     renderTodoList(todos);
+    showNoTodosMessage();
+    showPendingCount();
   } else {
     errorMessage.classList.replace("d-none", "d-block");
     todoInput.classList.add("border-danger");
@@ -73,6 +77,7 @@ function renderTodoList(arr) {
       todo.isCompleted = e.target.checked;
 
       renderTodoList(todos);
+      showPendingCount();
     });
     checkBox.setAttribute("type", "checkbox");
     checkBox.className = "form-check-input";
@@ -128,9 +133,27 @@ function renderTodoList(arr) {
   });
 }
 
+function showNoTodosMessage() {
+  const noTodosMessage = document.querySelector(".no-todos-message");
+  // noTodosMessage.classList.toggle("d-none", todos.length != 0);
+
+  if (todos.length == 0) {
+    noTodosMessage.classList.remove("d-none");
+  } else {
+    noTodosMessage.classList.add("d-none");
+  }
+}
+
+function showPendingCount() {
+  const pendingCount = document.querySelector(".pending-count");
+  const pendingTodos = todos.filter((todo) => !todo.isCompleted);
+  pendingCount.textContent = pendingTodos.length;
+}
 function deleteTodo(todoId) {
   todos = todos.filter((todo) => todo.id !== todoId);
   renderTodoList(todos);
+  showNoTodosMessage();
+  showPendingCount();
 }
 function resetTodoInput() {
   todoInput.value = "";
@@ -166,6 +189,9 @@ clearBtn.addEventListener("click", () => {
       // todos.length = 0;
       todos = [];
       renderTodoList(todos);
+      showNoTodosMessage();
+      showPendingCount();
+
       Swal.fire({
         title: "Deleted!",
         text: "Your file has been deleted.",

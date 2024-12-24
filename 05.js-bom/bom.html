@@ -16,6 +16,16 @@
       body {
         height: 200vh;
       }
+      .wrapper {
+        width: 500px;
+        height: 300px;
+        background-color: tomato;
+        position: relative;
+      }
+      .wrapper .text {
+        position: absolute;
+        left: 0;
+      }
     </style>
   </head>
   <body>
@@ -38,6 +48,14 @@
       Current Time: <span id="hours"></span>: <span id="minutes"></span>:
       <span id="seconds"></span>
     </h2>
-    <script src="./assets/js/bom.js"></script>
+
+    <hr />
+    <div class="wrapper">
+      <h3 class="text">PF102</h3>
+    </div>
+
+    <hr />
+    <img src="" alt="" class="slide" width="300" />
+    <script src="./assets/js/bom.js" type="module"></script>
   </body>
 </html>
