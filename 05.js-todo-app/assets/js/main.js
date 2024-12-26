@@ -6,7 +6,8 @@ const filterTodos = document.querySelector(".filter-todos");
 const errorMessage = document.querySelector(".error-message");
 
 // const todos = [];
-let todos = [];
+let todos = JSON.parse(localStorage.getItem("todos")) || [];
+renderTodoList(todos);
 
 showNoTodosMessage();
 showPendingCount();
@@ -21,6 +22,8 @@ function handleAddTodo() {
 
     //   todos.push(todo);
     todos = [...todos, todo];
+
+    localStorage.setItem("todos", JSON.stringify(todos));
     errorMessage.classList.replace("d-block", "d-none");
     todoInput.classList.remove("border-danger");
 
@@ -75,6 +78,7 @@ function renderTodoList(arr) {
     checkBox.addEventListener("change", (e) => {
       console.log(e.target.checked);
       todo.isCompleted = e.target.checked;
+      localStorage.setItem("todos", JSON.stringify(todos));
 
       renderTodoList(todos);
       showPendingCount();
@@ -110,6 +114,7 @@ function renderTodoList(arr) {
       }).then((result) => {
         if (result.isConfirmed) {
           deleteTodo(todo.id);
+
           Swal.fire({
             title: "Deleted!",
             text: "Your file has been deleted.",
@@ -151,6 +156,7 @@ function showPendingCount() {
 }
 function deleteTodo(todoId) {
   todos = todos.filter((todo) => todo.id !== todoId);
+  localStorage.setItem("todos", JSON.stringify(todos));
   renderTodoList(todos);
   showNoTodosMessage();
   showPendingCount();
@@ -188,6 +194,7 @@ clearBtn.addEventListener("click", () => {
     if (result.isConfirmed) {
       // todos.length = 0;
       todos = [];
+      localStorage.setItem("todos", JSON.stringify(todos));
       renderTodoList(todos);
       showNoTodosMessage();
       showPendingCount();
@@ -218,4 +225,25 @@ filterTodos.addEventListener("change", (e) => {
   }
 
   renderTodoList(filtered);
+});
+
+//dark  mode
+
+const modeBtn = document.querySelector(".mode");
+
+let mode = localStorage.getItem("mode") || "light";
+
+mode === "dark" && document.body.classList.add("dark-mode");
+// console.log(mode);
+
+modeBtn.addEventListener("click", (e) => {
+  if (document.body.classList.contains("dark-mode")) {
+    document.body.classList.remove("dark-mode");
+    e.target.textContent = "Dark Mode";
+    localStorage.setItem("mode", "light");
+  } else {
+    document.body.classList.add("dark-mode");
+    e.target.textContent = "Light Mode";
+    localStorage.setItem("mode", "dark");
+  }
 });

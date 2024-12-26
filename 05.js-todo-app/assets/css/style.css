@@ -7,3 +7,16 @@
 .completed {
   text-decoration: line-through;
 }
+
+body {
+  background-color: whitesmoke;
+}
+body.dark-mode {
+  background-color: black;
+}
+
+.dark-mode h1,
+.dark-mode .pending-info,
+.dark-mode .mode {
+  color: whitesmoke;
+}
