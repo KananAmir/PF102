@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- bootstrap cdn -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header">
+          <nav>
+            <ul class="m-0 p-0 d-flex align-items-center">
+              <li>
+                <a href="index.html">Products</a>
+              </li>
+              <li>
+                <a href="wishlist.html"
+                  >Wishlist
+                  <sup
+                    style="color: red; font-size: 1.2rem"
+                    class="wishlist-count"
+                    >0</sup
+                  ></a
+                >
+              </li>
+              <li>
+                <a href="basket.html"
+                  >Basket
+                  <sup
+                    style="color: red; font-size: 1.2rem"
+                    class="basket-count"
+                    >0</sup
+                  ></a
+                >
+              </li>
+              <li>
+                <div class="dropdown">
+                  <a
+                    class="btn btn-secondary dropdown-toggle user-name"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    User
+                  </a>
+
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a
+                        class="dropdown-item sign-up-btn d-block"
+                        href="signin.html"
+                        >Sign In</a
+                      >
+                    </li>
+                    <li>
+                      <a
+                        class="dropdown-item sign-in-btn d-block"
+                        href="signup.html"
+                        >Sign Up</a
+                      >
+                    </li>
+                    <li>
+                      <button class="dropdown-item d-none logout-btn">
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <h1 class="text-center my-5">Wishlist</h1>
+
+    <section id="wishlist">
+      <div class="container">
+        <div class="wishlist row">
+          <!-- <div class="col-12 col-md-6 col-lg-3"></div> -->
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js
+    "></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/wishlist.js" type="module"></script>
+  </body>
+</html>

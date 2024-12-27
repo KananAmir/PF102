@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap");
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        width: 100%;
+        max-width: 400px;
+        transform: translateY(20px);
+        opacity: 0;
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      @keyframes fadeIn {
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      h1 {
+        text-align: center;
+        color: #4a4a4a;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        margin-top: 1rem;
+        color: #4a4a4a;
+        font-weight: 300;
+      }
+      input {
+        padding: 0.75rem;
+        margin-top: 0.5rem;
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border-color 0.3s, box-shadow 0.3s;
+        width: 90%;
+      }
+      input:focus {
+        outline: none;
+        border-color: #667eea;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.25);
+      }
+      button {
+        margin-top: 1.5rem;
+        padding: 0.75rem;
+        background-color: #667eea;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.1s;
+      }
+      button:hover {
+        background-color: #5a67d8;
+      }
+      button:active {
+        transform: scale(0.98);
+      }
+      .login-link {
+        text-align: center;
+        margin-top: 1rem;
+        color: #4a4a4a;
+      }
+      .login-link a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+
+      .pw-input-wrapper {
+        position: relative;
+      }
+      .pw-input-wrapper i {
+        position: absolute;
+        right: 30px;
+        top: 22px;
+        cursor: pointer;
+      }
+      @media (max-width: 480px) {
+        .container {
+          padding: 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Sign Up</h1>
+      <form>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+
+        <label for="password">Password:</label>
+        <div class="pw-input-wrapper">
+          <input type="password" id="password" name="password" required />
+          <i class="fa-solid fa-eye-slash eye-icon"></i>
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+      <p class="login-link">
+        Already have an account? <a href="signin.html">Log in</a>
+      </p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="./assets/js/signup.js" type="module"></script>
+  </body>
+</html>

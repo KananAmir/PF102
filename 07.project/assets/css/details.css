@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+.product-details img {
+  width: 90%;
+}
+
+.swiper-wrapper img {
+  width: 100%;
+}
+
+.rating {
+  display: flex;
+  gap: 5px;
+}
+
+.star {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: #ddd; /* Boş ulduz rəngi */
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  position: relative;
+  background: linear-gradient(to right, gold 0%, gold 0%, #ddd 0%, #ddd 100%);
+}
