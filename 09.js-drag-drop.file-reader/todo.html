@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Draggable Todo List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 20px;
+      }
+
+      .container {
+        display: flex;
+        gap: 20px;
+      }
+
+      .todo-column {
+        flex: 1;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .todo-column h3 {
+        text-align: center;
+        margin-top: 0;
+      }
+
+      .todo-item {
+        padding: 10px;
+        background-color: #f0f8ff;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        cursor: grab;
+        text-align: center;
+      }
+
+      .todo-item:active {
+        cursor: grabbing;
+      }
+
+      .drop-zone {
+        min-height: 200px;
+        padding: 10px;
+        border: 2px dashed #ccc;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+      }
+
+      .drop-zone.over {
+        background-color: #e0f7fa;
+      }
+      .hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Draggable Todo List</h1>
+    <div class="container">
+      <div class="todo-column">
+        <h3>Todo</h3>
+        <div class="drop-zone" id="todo">
+          <div class="todo-item" draggable="true" id="task1">Task 1</div>
+          <div class="todo-item" draggable="true" id="task2">Task 2</div>
+          <div class="todo-item" draggable="true" id="task3">Task 3</div>
+        </div>
+      </div>
+      <div class="todo-column">
+        <h3>In Progress</h3>
+        <div class="drop-zone" id="in-progress"></div>
+      </div>
+      <div class="todo-column">
+        <h3>Completed</h3>
+        <div class="drop-zone" id="completed"></div>
+      </div>
+    </div>
+
+    <script>
+      const items = document.querySelectorAll(".todo-item");
+      const zones = document.querySelectorAll(".drop-zone");
+      items.forEach((item) => {
+        item.addEventListener("dragstart", (e) => {
+          e.dataTransfer.setData("text/plain", e.target.id);
+          setTimeout(() => {
+            e.target.classList.add("hide");
+          }, 0);
+        });
+
+        item.addEventListener("dragend", (e) => {
+          e.target.classList.remove("hide");
+        });
+      });
+      zones.forEach((zone) => {
+        zone.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          zone.classList.add("over");
+        });
+
+        zone.addEventListener("dragleave", () => {
+          zone.classList.remove("over");
+        });
+
+        zone.addEventListener("drop", (e) => {
+          e.preventDefault();
+          const id = e.dataTransfer.getData("text/plain");
+          const draggable = document.getElementById(id);
+          zone.appendChild(draggable);
+          //   zone.classList.remove("over");
+        });
+      });
+    </script>
+  </body>
+</html>

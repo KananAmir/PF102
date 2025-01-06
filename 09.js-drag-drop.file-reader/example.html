@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .wrapper {
+        display: flex;
+        gap: 1rem;
+        padding: 2rem;
+      }
+      .wrapper .drop-zone {
+        width: 160px;
+        height: 160px;
+        border: 4px solid;
+        padding: 1rem;
+      }
+      .drop-zone #drag-item {
+        width: 100%;
+        height: 100%;
+        background-image: url("https://picsum.photos/200/300");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border: 4px solid orange;
+      }
+      .wrapper .drop-zone.hover {
+        background-color: bisque;
+        border: 4px dashed red;
+      }
+      .drop-zone #drag-item.hide {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="drop-zone hover">
+        <div id="drag-item" draggable="true"></div>
+      </div>
+      <div class="drop-zone"></div>
+      <div class="drop-zone"></div>
+      <div class="drop-zone"></div>
+    </div>
+
+    <script src="./assets/js/example.js"></script>
+  </body>
+</html>
