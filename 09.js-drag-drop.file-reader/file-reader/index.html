@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JS - File Reader</title>
+    <style>
+      .wrapper {
+        width: 200px;
+        height: 200px;
+        border: 2px solid;
+        margin-top: 2rem;
+      }
+      .box {
+        width: 150px;
+        height: 150px;
+        border: 2px solid;
+        margin: 2rem 0;
+      }
+      .box img {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <input type="file" name="" id="textFile" />
+
+    <div class="wrapper">
+      <p class="text"></p>
+    </div>
+
+    <hr />
+    <!-- <input type="file" name="" id="profileImage" accept="image/jpeg" /> -->
+    <!-- <input
+      type="file"
+      name=""
+      id="profileImage"
+      accept="image/png, image/jpeg"
+    /> -->
+    <input type="file" name="" id="profileImage" accept="image/*" />
+    <div class="box drop-zone">
+      <img src="" alt="profile-picture" class="profile" />
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>
