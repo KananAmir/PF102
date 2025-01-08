@@ -8,6 +8,7 @@ import {
 
 const productsWrapper = document.querySelector(".products");
 const logout = document.querySelector(".logout-btn");
+const profileImage = document.querySelector("#profileImage");
 
 const users = getDataFromLocalStorage("users") || [];
 const user = users.find((u) => u.isLogged);
@@ -20,6 +21,10 @@ window.addEventListener("DOMContentLoaded", () => {
   renderCards(products);
 
   calcWishlistCount(user);
+
+  if (user) {
+    profileImage.src = user.profile;
+  }
 });
 
 function renderCards(arr) {

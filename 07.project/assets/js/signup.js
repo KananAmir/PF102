@@ -1,9 +1,11 @@
 import { setDataToLocalStorage, getDataFromLocalStorage } from "./helpers.js";
 
 const signUpForm = document.querySelector("form");
-
+const profileImageWrapper = document.querySelector(".profile-image");
+const profileInput = document.querySelector("#profile");
 // const users = JSON.parse(JSON.stringify("users")) ?? [];
 const users = getDataFromLocalStorage("users") ?? [];
+let profileImage = null;
 
 signUpForm.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -24,6 +26,7 @@ signUpForm.addEventListener("submit", (e) => {
       isLogged: false,
       wishlist: [],
       basket: [],
+      profile: profileImage,
     };
 
     users.push(user);
@@ -70,5 +73,43 @@ eyeIcon.addEventListener("click", (e) => {
     e.target.classList.remove("fa-eye-slash");
     e.target.classList.add("fa-eye");
     pwInput.type = "text";
+  }
+});
+
+profileInput.addEventListener("change", (e) => {
+  const file = e.target.files[0];
+
+  if (file && file.type.startsWith("image")) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      profileImage = reader.result;
+    };
+    reader.onerror = function () {
+      console.log(reader.error);
+    };
+  }
+});
+
+//drop zone
+profileImageWrapper.addEventListener("dragover", (e) => {
+  e.preventDefault();
+});
+profileImageWrapper.addEventListener("drop", (e) => {
+  e.preventDefault();
+  const file = e.dataTransfer.files[0];
+  console.log(file);
+
+  if (file && file.type.startsWith("image")) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = function () {
+      profileImage = reader.result;
+    };
+    reader.onerror = function () {
+      console.log(reader.error);
+    };
   }
 });
