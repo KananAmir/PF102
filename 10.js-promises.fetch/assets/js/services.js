@@ -36,4 +36,55 @@ function deleteDataById(endpoint, id) {
     });
 }
 
-export { getAllData, getDataById, deleteDataById };
+// post data
+function addNewData(endpoint, payload) {
+  fetch(`${BASE_URL}/${endpoint}`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+// edit data
+//put
+function editData(endpoint, id, payload) {
+  fetch(`${BASE_URL}/${endpoint}/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+//patch
+function editDataWithSpecificFields(endpoint, id, payload) {
+  fetch(`${BASE_URL}/${endpoint}/${id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  })
+    .then((response) => {
+      console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+export {
+  getAllData,
+  getDataById,
+  deleteDataById,
+  addNewData,
+  editData,
+  editDataWithSpecificFields,
+};

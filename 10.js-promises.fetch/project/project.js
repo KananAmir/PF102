@@ -1,5 +1,9 @@
-import { BASE_URL } from "./constant.js";
-import { deleteDataById, getAllData, getDataById } from "./services.js";
+import { BASE_URL } from "../assets/js/constant.js";
+import {
+  deleteDataById,
+  getAllData,
+  getDataById,
+} from "../assets/js/services.js";
 
 // getDataById("suppliers", 8);
 
@@ -18,6 +22,7 @@ function getData(endpoint) {
       //   console.log(data);
 
       drawTable(data);
+      // console.table(data);
     })
     .catch((err) => {
       console.log(err);
@@ -59,7 +64,13 @@ function drawTable(arr) {
     tdContact.textContent = element.contactTitle;
     tdAddress.textContent = `${element.address?.city}, ${element.address?.country}`;
 
-    tdActions.append(details, deleteBtn);
+    const editBtn = document.createElement("a");
+    editBtn.textContent = "edit";
+    editBtn.className = "btn btn-success";
+    editBtn.href = `edit-supplier.html?id=${element.id}`;
+
+    tdActions.className = "d-flex gap-2";
+    tdActions.append(details, deleteBtn, editBtn);
     trElem.append(tdId, tdName, tdContact, tdAddress, tdActions);
     tBody.appendChild(trElem);
   });
