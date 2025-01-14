@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    table,
+    th,
+    tr,
+    td {
+      border: 1px solid;
+    }
+    td,
+    th {
+      padding: 0.5rem 1rem;
+    }
+  </style>
+  <body>
+    <input type="search" class="search" placeholder="search" />
+    <!-- <button id="searchBtn">search</button> -->
+
+    <table>
+      <thead>
+        <tr>
+          <th>Uni Name</th>
+          <th>Country</th>
+          <th>web page</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+    <script>
+      const BASE_URL = "http://universities.hipolabs.com";
+      const BASE_URL2 = "https://api.github.com/users";
+      const tBody = document.querySelector("tbody");
+
+      const searchInput = document.querySelector(".search");
+      // const searchBtn = document.querySelector("#searchBtn");
+
+      // searchBtn.addEventListener("click", (e) => {
+      //   const searchValue = searchInput.value;
+      //   searchUniversity(searchValue);
+      // });
+
+      searchUniversity("");
+      function searchUniversity(uniName) {
+        fetch(`${BASE_URL}/search?name=${uniName}`)
+          .then((res) => {
+            return res.json();
+          })
+          .then((data) => {
+            console.log(data);
+            drawTable(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+
+      let timeout;
+      searchInput.addEventListener("keyup", (e) => {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          searchUniversity(e.target.value.trim());
+        }, 500);
+      });
+
+      function drawTable(universites) {
+        tBody.innerHTML = "";
+
+        universites.forEach((u) => {
+          const trElem = document.createElement("tr");
+          const tdName = document.createElement("td");
+          const tdCountry = document.createElement("td");
+          const tdWebPage = document.createElement("td");
+          const webPageLink = document.createElement("a");
+
+          tdName.textContent = u.name;
+          tdCountry.textContent = u.country;
+          webPageLink.setAttribute("href", u.web_pages[0]);
+          webPageLink.setAttribute("target", "_blank");
+          webPageLink.textContent = u.domains[0];
+
+          tdWebPage.append(webPageLink);
+          trElem.append(tdName, tdCountry, tdWebPage);
+          tBody.appendChild(trElem);
+        });
+      }
+    </script>
+  </body>
+</html>
