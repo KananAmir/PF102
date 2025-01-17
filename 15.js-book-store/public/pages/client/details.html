@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../../assets/css/book-details.css" />
+
+    <title>Vite App</title>
+  </head>
+  <body>
+    <section id="book-details">
+      <div class="container">
+        <div class="book-details">
+          <div class="book-image">
+            <img
+              src="https://m.media-amazon.com/images/I/61ztlXgCmpL._AC_UF1000,1000_QL80_.jpg"
+              alt="The Pragmatic Programmer book cover"
+            />
+          </div>
+          <div class="book-info">
+            <h1 class="book-title">The Pragmatic Programmer</h1>
+            <p class="book-author">by Andrew Hunt, David Thomas</p>
+            <div class="book-meta">
+              <span class="book-price">$45.00</span>
+              <div class="book-rating">
+                <span class="stars">★</span>
+                <span>4.8 (150 sold)</span>
+              </div>
+            </div>
+            <div class="book-description">
+              <p>
+                A comprehensive guide to becoming a pragmatic and effective
+                programmer. This book offers insights and practical advice for
+                software developers at all levels, helping them to improve their
+                craft and become more productive.
+              </p>
+            </div>
+            <div class="book-details-grid">
+              <div class="detail-item">
+                <div class="detail-label">Genre</div>
+                <div>Programming</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Language</div>
+                <div>English</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">Stock</div>
+                <div>30 available</div>
+              </div>
+              <div class="detail-item">
+                <div class="detail-label">ID</div>
+                <div>1</div>
+              </div>
+            </div>
+            <a href="#" class="add-to-cart">Add to Cart</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script type="module" src="./src/scripts/details.js"></script>
+  </body>
+</html>
