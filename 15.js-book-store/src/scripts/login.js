@@ -16,7 +16,15 @@ loginForm.addEventListener("submit", async (e) => {
   );
 
   if (user) {
-    window.location.replace("/");
+    localStorage.setItem(
+      "userInfo",
+      JSON.stringify({ userId: user.id, role: user.role })
+    );
+    if (user.role === "client") {
+      window.location.replace("/");
+    } else {
+      window.location.replace("/dashboard");
+    }
   } else {
     alert("wrong credientials!");
   }

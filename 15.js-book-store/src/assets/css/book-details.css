@@ -136,3 +136,144 @@ body {
     padding: 20px;
   }
 }
+
+/* skeloton */
+
+.image-container {
+  flex: 0 0 400px;
+}
+
+.image-skeleton {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: #e0e0e0;
+  border-radius: 8px;
+}
+
+.details-container {
+  flex: 1;
+}
+
+.title-skeleton {
+  height: 48px;
+  background: #e0e0e0;
+  width: 60%;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+
+.author-skeleton {
+  height: 24px;
+  background: #e0e0e0;
+  width: 40%;
+  margin-bottom: 24px;
+  border-radius: 4px;
+}
+
+.price-rating-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.price-skeleton {
+  height: 32px;
+  background: #e0e0e0;
+  width: 80px;
+  border-radius: 4px;
+}
+
+.rating-skeleton {
+  height: 32px;
+  background: #e0e0e0;
+  width: 160px;
+  border-radius: 4px;
+}
+
+.description-skeleton {
+  height: 80px;
+  background: #e0e0e0;
+  margin-bottom: 32px;
+  border-radius: 4px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.info-box {
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.info-label {
+  height: 20px;
+  background: #e0e0e0;
+  width: 70%;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.info-value {
+  height: 24px;
+  background: #e0e0e0;
+  width: 40%;
+  border-radius: 4px;
+}
+
+.button-skeleton {
+  height: 48px;
+  background: #e0e0e0;
+  width: 160px;
+  border-radius: 24px;
+}
+
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.4) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .image-container {
+    flex: none;
+    width: 100%;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}

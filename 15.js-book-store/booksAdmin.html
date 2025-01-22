@@ -23,6 +23,15 @@
     />
   </head>
   <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="booksAdmin.html">Books</a></li>
+          <li><a href="addBook.html">Add Book</a></li>
+        </ul>
+      </nav>
+    </header>
     <section id="admin-books ">
       <div class="container">
         <div class="admin-books">
@@ -44,6 +53,111 @@
         </div>
       </div>
     </section>
+
+    <!-- Button trigger modal -->
+    <!-- <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#editBook"
+    >
+      Launch demo modal
+    </button> -->
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="editBook"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Book</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form id="editBookForm">
+              <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="author" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="price"
+                  min="0"
+                  step="0.01"
+                />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea
+                  class="form-control"
+                  id="description"
+                  rows="3"
+                ></textarea>
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="mb-3">
+                <label for="stock" class="form-label">Stock</label>
+                <input type="number" class="form-control" id="stock" min="0" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="mb-3">
+                <label for="genre" class="form-label">Genre</label>
+                <select name="" id="genre" class="form-select">
+                  <!-- <option value="">test</option> -->
+                </select>
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="mb-3">
+                <label for="language" class="form-label">Language</label>
+                <input type="text" class="form-control" id="language" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="mb-3">
+                <label for="coverImageURL" class="form-label"
+                  >Cover Image URL</label
+                >
+                <input type="url" class="form-control" id="coverImageURL" />
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <button type="submit" class="btn btn-primary w-100">
+                Edit Book
+              </button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!-- <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 

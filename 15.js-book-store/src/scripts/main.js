@@ -1,15 +1,24 @@
 import BASE_URL, { endpoints } from "../constants";
-import { getAllData } from "../services";
+import {
+  editDataById,
+  editDataByIdWithPatch,
+  getAllData,
+  getDataById,
+} from "../services";
 
 const searchInput = document.getElementById("search");
 const sortSelect = document.getElementById("sort");
+const skeleton = document.getElementById("skeleton");
 const getBooks = async () => {
   try {
+    skeleton.classList.replace("d-none", "d-block");
     const books = await getAllData(endpoints.books);
     console.log(books);
     renderCards(books);
   } catch (error) {
     console.log(error);
+  } finally {
+    skeleton.classList.replace("d-block", "d-none");
   }
 };
 
@@ -39,6 +48,17 @@ const renderCards = (books) => {
     wishlistButton.title = "Add to wishlist";
     wishlistButton.innerHTML = `<i class="fas fa-heart"></i>`;
     bookActions.appendChild(wishlistButton);
+
+    wishlistButton.addEventListener("click", (e) => {
+      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+      if (!userInfo) {
+        window.alert("login first!");
+        window.location.replace("login.html");
+        return;
+      }
+
+      handleToggleWishlist(book.id);
+    });
 
     // Details link
     const detailsLink = document.createElement("a");
@@ -160,3 +180,32 @@ sortSelect.addEventListener("change", async (e) => {
     console.log(error);
   }
 });
+
+//favorites
+
+const handleToggleWishlist = async (id) => {
+  try {
+    const { userId } = JSON.parse(localStorage.getItem("userInfo"));
+    const user = await getDataById(endpoints.users, userId);
+    const bool = user.favorites.find((q) => q.bookId === +id);
+
+    let updatedFavs;
+    if (!bool) {
+      updatedFavs = [...user.favorites, { bookId: +id }];
+    } else {
+      updatedFavs = user.favorites.filter((q) => q.bookId !== +id);
+    }
+
+    // console.log(updatedFavs);
+
+    await editDataById(endpoints.users, userId, {
+      ...user,
+      favorites: updatedFavs,
+    });
+    // await editDataByIdWithPatch(endpoints.users, userId, {
+    //   favorites: updatedFavs,
+    // });
+  } catch (error) {
+    console.log(error);
+  }
+};

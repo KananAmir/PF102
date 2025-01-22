@@ -1,15 +1,20 @@
-import { getAllData, getDataById } from "../services";
+import { editDataById, getAllData, getDataById } from "../services";
 import { endpoints } from "../constants";
 const goBackBtn = document.querySelector("#goBack");
+const skeleton = document.querySelector("#skeleton");
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 const getBookDetails = async () => {
   try {
+    skeleton.classList.replace("d-none", "d-block");
     const bookDetails = await getDataById(endpoints.books, id);
     renderBookDetails(bookDetails);
   } catch (error) {
     console.log(error);
+  } finally {
+    skeleton.classList.replace("d-block", "d-none");
   }
 };
 
@@ -112,11 +117,20 @@ const renderBookDetails = (book) => {
   });
 
   // Səbətə əlavə et düyməsi
-  const addToCartLink = document.createElement("a");
+  const addToCartLink = document.createElement("button");
   addToCartLink.href = "#";
   addToCartLink.className = "add-to-cart";
   addToCartLink.textContent = "Add to Cart";
 
+  addToCartLink.addEventListener("click", (e) => {
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo) {
+      window.location.replace("login.html");
+      return;
+    }
+
+    handleAddToBasket(book.id);
+  });
   // Elementləri birləşdiririk
   bookInfo.appendChild(bookTitle);
   bookInfo.appendChild(bookAuthor);
@@ -134,3 +148,27 @@ const renderBookDetails = (book) => {
 goBackBtn.addEventListener("click", () => {
   window.history.back();
 });
+
+const handleAddToBasket = async (id) => {
+  try {
+    const { userId } = JSON.parse(localStorage.getItem("userInfo"));
+    const user = await getDataById(endpoints.users, userId);
+
+    const bool = user.basket.find((q) => q.bookId === id);
+
+    if (!bool) {
+      user.basket.push({ quantity: 1, bookId: id });
+    } else {
+      const idx = user.basket.findIndex((q) => q.bookId == id);
+
+      user.basket[idx].quantity++;
+    }
+
+    await editDataById(endpoints.users, userId, {
+      ...user,
+    });
+    // console.log(user);
+  } catch (error) {
+    console.log(error);
+  }
+};

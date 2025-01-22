@@ -23,7 +23,7 @@ userForm.addEventListener("submit", async (e) => {
       email,
       password,
       profilePicture,
-      role: "user",
+      role: "client",
       balance: 0,
       totalSpentMoney: 0,
       accountCreationDate: new Date().toLocaleDateString("en-CA"),
@@ -33,6 +33,7 @@ userForm.addEventListener("submit", async (e) => {
     console.log(newUser);
 
     await addNewData(endpoints.users, newUser);
+    window.location.replace("login.html");
   } else {
     alert("username or email already used!");
   }
