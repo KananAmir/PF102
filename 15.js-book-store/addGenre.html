@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add New Book</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+
+    <style>
+      .form-container {
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .form-label {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="booksAdmin.html">Books</a></li>
+          <li><a href="addBook.html">Add Book</a></li>
+          <li><a href="genresAdmin.html">Genres</a></li>
+          <li><a href="addGenre.html">Add Genre</a></li>
+        </ul>
+      </nav>
+    </header>
+    <section id="addBook">
+      <div class="container">
+        <div class="form-container bg-light">
+          <h1 class="text-center mb-4">Add New Genre</h1>
+          <form id="addGenreForm">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input type="text" class="form-control" id="name" />
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3">
+              <label for="description" class="form-label">Description</label>
+              <input type="text" class="form-control" id="description" />
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3">
+              <label for="bookCount" class="form-label">Book Count</label>
+              <input type="number" class="form-control" id="bookCount" />
+              <div class="invalid-feedback"></div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">
+              Add Genre
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/src/scripts/addGenre.js" type="module"></script>
+  </body>
+</html>
