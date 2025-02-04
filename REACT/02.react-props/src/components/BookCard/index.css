@@ -1,0 +1,53 @@
+.book-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+.book-card:hover {
+  transform: translateY(-5px);
+}
+.book-cover {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+.book-info {
+  padding: 20px;
+}
+.book-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+}
+.book-author {
+  font-size: 0.9em;
+  color: #666;
+  margin: 0 0 10px 0;
+}
+.book-price {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #4caf50;
+  margin: 0 0 10px 0;
+}
+.book-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.star {
+  color: #ffd700;
+  font-size: 1.2em;
+}
+.rating-value {
+  margin-left: 5px;
+  font-size: 0.9em;
+}
+.book-stock {
+  font-size: 0.8em;
+  color: #666;
+}

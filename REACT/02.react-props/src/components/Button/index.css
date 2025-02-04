@@ -1,0 +1,10 @@
+.warning {
+  background-color: yellow;
+  border: 2px solid;
+  color: black;
+}
+.light {
+  border: 2px solid;
+  background-color: transparent;
+  color: black;
+}
