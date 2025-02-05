@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Card from './components/Card';
 import Counter from './components/Counter';
+import Users from './components/Users';
 
 function App() {
 
@@ -51,6 +52,9 @@ function App() {
 
       <hr />
       <Counter />
+
+      <hr />
+      <Users />
     </>
   )
 }
