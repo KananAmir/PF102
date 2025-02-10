@@ -11,6 +11,7 @@ const Books = () => {
     const [books, setBooks] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("")
 
     const getBooks = async () => {
         setIsLoading(true)
@@ -18,7 +19,6 @@ const Books = () => {
             const response = await axios(`${BASE_URL}/books`)
             console.log(response.data);
             setBooks(response.data);
-
         } catch (error) {
             setError(error.message)
         } finally {
@@ -52,6 +52,22 @@ const Books = () => {
     //     getBooks()
     // })
 
+
+    //search
+    // const handleCahnge = (e) => {
+    //     console.log(e.target.value);
+    //     const searchValue = e.target.value.toLowerCase().trim()
+    //     const filtered = books.filter((book) => book.title.toLowerCase().includes(searchValue))
+    //     setBooks(filtered)
+    // }
+
+
+    const filteredBooks = books?.filter((book) => book.title.toLowerCase().includes(searchQuery))
+
+    const handleCahnge = (e) => {
+        const searchValue = e.target.value.toLowerCase().trim()
+        setSearchQuery(searchValue)
+    }
     //correnct version
     useEffect(() => {
         getBooks()
@@ -64,6 +80,10 @@ const Books = () => {
             </h2>
             {isLoading && <Loading />}
             {error && <p>{error}</p>}
+
+            <div style={{ padding: "1rem 0" }}>
+                <input type="search" placeholder="search book.." onChange={handleCahnge} />
+            </div>
             {books
                 &&
                 <table>
@@ -79,7 +99,7 @@ const Books = () => {
                     </thead>
                     <tbody>
                         {
-                            books.map((book) => {
+                            filteredBooks.map((book) => {
                                 return (<tr key={book.id}>
                                     <td>{book.id}</td>
                                     <td>{book.title}</td>
