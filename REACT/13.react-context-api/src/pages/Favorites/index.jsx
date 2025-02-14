@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 import { FaHeart } from "react-icons/fa";
 
 const Favorites = () => {
-    const { favs, toggleFavorites } = useContext(FavoritesContext)
+    const { favs, toggleFavorites, clearAllFavs } = useContext(FavoritesContext)
 
 
     if (favs.length === 0) {
@@ -13,7 +13,7 @@ const Favorites = () => {
 
     return (
         <>
-          <ul>
+            <ul>
                 {favs.map((book) => {
                     return (<li key={book.id}>
                         <span>{book.title}</span>
@@ -22,12 +22,16 @@ const Favorites = () => {
                         </button>
                         <button onClick={() => { toggleFavorites(book) }}>
                             {
-                                    <FaHeart />
+                                <FaHeart style={{color: "red"}}/>
                             }
                         </button>
                     </li>)
                 })}
             </ul>
+            <hr />
+            <button style={{ backgroundColor: "orange" }} onClick={() => {
+                clearAllFavs()
+            }}>clear all</button>
         </>
     )
 }

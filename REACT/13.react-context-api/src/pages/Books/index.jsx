@@ -41,9 +41,9 @@ const Books = () => {
                             {
                                 favs.find((q) => q.id === book.id)
                                     ?
-                                    <FaHeart />
+                                    <FaHeart style={{color: "red"}}/>
                                     :
-                                    <FaRegHeart />
+                                    <FaRegHeart style={{color: "red"}}/>
                             }
                         </button>
                     </li>)

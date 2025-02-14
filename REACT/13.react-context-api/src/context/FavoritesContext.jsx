@@ -16,8 +16,12 @@ const FavoritesProvider = ({children}) => {
         }
     }
 
+    const clearAllFavs = () =>{
+        setFavs([])
+    }
+
   return (
-    <FavoritesContext.Provider value={{favs, toggleFavorites}}>
+    <FavoritesContext.Provider value={{favs, toggleFavorites, clearAllFavs}}>
         {children}
     </FavoritesContext.Provider>
   )
