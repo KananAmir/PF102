@@ -1,0 +1,18 @@
+header {
+  background-color: teal;
+  padding: 1rem 0;
+  min-width: 500px;
+}
+header nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  list-style: none;
+  padding: 0;
+}
+header nav ul a {
+  color: wheat;
+}
+header nav ul a.active {
+  color: orange;
+}
