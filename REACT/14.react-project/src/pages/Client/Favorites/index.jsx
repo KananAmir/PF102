@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid2';
 
 import BookCard from "../../../components/BookCard";
 import { Toaster } from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Favorites = () => {
     const { favs, clearAllFavs } = useContext(FavoritesContext)
@@ -16,6 +17,9 @@ const Favorites = () => {
 
     return (
         <>
+            <Helmet>
+                <title>Favorites Page</title>
+            </Helmet>
             <Container>
 
                 <Grid container spacing={2}>

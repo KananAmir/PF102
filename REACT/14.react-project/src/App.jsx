@@ -14,7 +14,8 @@ import EditBook from './pages/Admin/EditBook'
 import BookDetails from './pages/Client/BookDetails'
 import NotFound from './pages/Client/NotFound'
 import Favorites from './pages/Client/Favorites'
-import { FormikExample } from './pages/Admin/FormikExample'
+import Basket from './pages/Client/Basket'
+// import { FormikExample } from './pages/Admin/FormikExample'
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path='about' element={<About />} />
           <Route path='favorites' element={<Favorites />} />
+          <Route path='basket' element={<Basket />} />
+
       
           <Route path='books'>
             <Route index element={<Books />} />

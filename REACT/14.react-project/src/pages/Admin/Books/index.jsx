@@ -60,24 +60,30 @@ const Books = () => {
         try {
             const response = await editDataById(endpoints.BOOKS, editedBook.id, editedBook)
             console.log(response);
-            // if(response.status === 201){
-            //     setBooks([...books, editedBook])
+            // if(response.status === 200){
+            //     const updatedBooks = books.map((book) =>
+            //         book.id === editedBook.id ? editedBook : book
+            //       );
+            //       setBooks(updatedBooks);
+            //       setIsModalOpen(false);
             // }
+                const updatedBooks = books.map((book) =>
+                    book.id === editedBook.id ? editedBook : book
+                  );
+                  setBooks(updatedBooks);
+                  setIsModalOpen(false);
 
-            getData(endpoints.BOOKS).then((data) => {
-                setBooks(data)
-            }).catch((err) => {
-                console.log(err);
-            }).finally(() => {
-                setIsLoading(false)
-            })
+            // getData(endpoints.BOOKS).then((data) => {
+            //     setBooks(data)
+            // }).catch((err) => {
+            //     console.log(err);
+            // }).finally(() => {
+            //     setIsLoading(false)
+            // })
        
         } catch (error) {
             console.log(error);
-            
         }
-
-        
     }
 
 
@@ -205,11 +211,7 @@ const Books = () => {
     ];
 
     return (
-
-
-
         <div className="py-5">
-
             <Container >
                 <h1>Books</h1>
                 <Table
@@ -219,8 +221,8 @@ const Books = () => {
                     showSorterTooltip={{
                         target: 'sorter-icon',
                     }}
+                    rowKey={"id"}
                 />
-
 
                 <Modal title="Edit Book" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
                     <form className="flex flex-col gap-3 items-center" onSubmit={handleEditBook}>
@@ -236,8 +238,6 @@ const Books = () => {
                         <button type="submit">Submit</button>
                     </form>
                 </Modal>
-
-
             </Container>
         </div>
     )

@@ -5,9 +5,12 @@ import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FavoritesContext } from "../../context/FavoritesContext";
 import { Toaster } from "react-hot-toast";
+import { FaCartPlus } from "react-icons/fa6";
+import { BasketContext } from "../../context/BasketContext";
 
 export default function BookCard({ book }) {
     const { toggleFavorites, favs } = useContext(FavoritesContext)
+    const { addToBasket } = useContext(BasketContext)
 
     return (
         <div className="max-w-sm rounded-lg overflow-hidden bg-white shadow-lg py-5">
@@ -23,23 +26,30 @@ export default function BookCard({ book }) {
                     />
                 </div>
                 <div className="absolute top-4 right-4 flex gap-2">
+                    <button className="p-2 rounded-full bg-white/80 hover:bg-white transition-colors ">
+                        <FaCartPlus className="w-5 h-5 text-gray-600 hover:text-orange-500 transition-colors"
+                            onClick={()=>{
+                                addToBasket(book)
+                            }}
+                        />
+                    </button>
                     <button
                         className="p-2 rounded-full bg-white/80 hover:bg-white transition-colors"
                         onClick={() => { toggleFavorites(book) }}>
                         {
                             favs.find((q) => q.id === book.id)
                                 ?
-                                <FaHeart style={{ color: "red" }} 
-                                className="w-5 h-5 text-gray-600 hover:text-red-500 transition-colors"
+                                <FaHeart style={{ color: "red" }}
+                                    className="w-5 h-5 text-gray-600 hover:text-red-500 transition-colors"
                                 />
                                 :
-                                <FaRegHeart style={{ color: "red" }} 
-                                className="w-5 h-5 text-gray-600 hover:text-red-500 transition-colors"
+                                <FaRegHeart style={{ color: "red" }}
+                                    className="w-5 h-5 text-gray-600 hover:text-red-500 transition-colors"
                                 />
                         }
                     </button>
                     <button className="p-2 rounded-full bg-white/80 hover:bg-white transition-colors">
-                        <Info className="w-5 h-5 text-gray-600" />
+                        <Info className="w-5 h-5 hover:text-blue-600" />
                     </button>
                 </div>
             </div>
