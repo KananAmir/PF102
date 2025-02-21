@@ -16,7 +16,7 @@ function App() {
           <Route path="/" element={<Categories />} />
           <Route path="/:id" element={<CategoryDetails />} />
           <Route path="/add" element={<AddCategory />} />
-          <Route path="/add/:id" element={<EditCategory />} />
+          <Route path="/new/:id" element={<EditCategory />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/basket" element={<Basket />} />
         </Routes>

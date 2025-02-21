@@ -4,12 +4,13 @@ import { toggleFavorites } from "../../redux/features/favoritesSlice"
 import { useDispatch } from "react-redux"
 
 const Categories = () => {
-  const { data, isError, isLoading, refetch } = useGetAllCategoriesQuery()
+  // const { data, isError, isLoading, refetch } = useGetAllCategoriesQuery()
+  const { data, isError, isLoading } = useGetAllCategoriesQuery()
 const [deleteData, response] = useDeleteCategoryByIdMutation()
 const dispatch = useDispatch()
   const handleDelete = async (id)=>{
     await deleteData(id)
-    refetch()
+  
   }
   const handleFavorites =  (category)=>{
    dispatch(toggleFavorites(category))
@@ -48,7 +49,7 @@ const dispatch = useDispatch()
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{category.description}</td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                   <Link className="text-indigo-600 hover:text-indigo-900 mr-2 cursor-pointer border-2 p-2" to={`/${category.id}`}>Details</Link>
-                  <button className="text-orange-300 hover:text-indigo-900 mr-2 cursor-pointer border-2 p-2">Edit</button>
+                  <Link className="text-orange-300 hover:text-indigo-900 mr-2 cursor-pointer border-2 p-2" to={`/new/${category.id}`}>Edit</Link>
                   <button className="text-red-600 hover:text-red-900 cursor-pointer mr-2 border-2 p-2" onClick={()=>handleDelete(category.id)}>Delete</button>
                   <button className="text-green-600 hover:text-red-900 cursor-pointer mr-2 border-2 p-2" onClick={()=>{handleFavorites(category)}}>add to favs</button>
                 </td>
