@@ -66,4 +66,89 @@ var genres = [
         description: "Learn practical strategies for personal growth, productivity, and achieving a fulfilling life through expert advice and inspiration."
     }
 ];
-// interface keyword
+var variable = {
+    a: "html",
+    b: "css",
+    c: "typescript"
+};
+// const employee: Employee & Human = {
+//     firstName: "Miri",
+//     lastName: "Huseynov",
+//     employeeId: 1,
+//     salary: 2000,
+//     department: "IT"
+// }
+var employee = {
+    firstName: "Miri",
+    lastName: "Huseynov",
+    employeeId: 1,
+    salary: 2000,
+    department: "IT"
+};
+var teacher = {
+    name: "Kanan Amirov",
+    age: 27
+};
+// teacher.age = 37 // error
+console.log(teacher);
+var add = function (a, b) { return a + b; };
+console.log(add(5, 3)); // Output: 8
+//never
+function throwError(message) {
+    throw new Error(message);
+}
+function infinite() {
+    while (true) {
+        console.log("hello");
+    }
+}
+//functions
+// function sum(a:number,b:number):number{
+//     return a+b
+// }
+// console.log(sum(2,3));
+var sum = function (a, b) {
+    if (a < 0 || b < 0) {
+        return "only positive numbers are allowed";
+    }
+    return a + b;
+};
+console.log(sum(-2, 3));
+function userInfo(name, surname, age) {
+    if (age === void 0) { age = 16; }
+    return "I am ".concat(name, " ").concat(surname, " and I am ").concat(age, " years old");
+}
+console.log(userInfo("miri", "huseynov"));
+console.log(userInfo("sabina", "kardeshova", 25));
+function calcSum(a, b, c) {
+    if (c !== undefined) {
+        return a + b + c;
+    }
+    return a + b;
+}
+console.log(calcSum(1, 2));
+console.log(calcSum(1, 2, 3));
+// console.log(calcSum(1,2,3, 4)); //error
+function sumOfAllArguments() {
+    var args = [];
+    for (var _i = 0; _i < arguments.length; _i++) {
+        args[_i] = arguments[_i];
+    }
+    var sum = 0;
+    return args.reduce(function (sum, current) { return sum + current; }, 0);
+}
+console.log(sumOfAllArguments(3, 4, 5));
+console.log(sumOfAllArguments(3, 4, 5, 6));
+console.log(sumOfAllArguments(3, 4, 5, 6, 7));
+var greeting = function (username) {
+    console.log("Hello, ".concat(username));
+};
+greeting("Miri");
+//type assortion
+// type StudentType =  { id: number; name: string }
+// function createStudent(student: StudentType): void {
+//     console.log(`Welcome, ${student.name}!`);
+//   }
+//   createStudent({id: 123, name: "lorem", age: 23} as StudentType);
+// const studentWithExtras = { id: 1, name: "John", age: 20 };
+// createStudent(studentWithExtras as { id: number; name: string }); // Bypasses the error

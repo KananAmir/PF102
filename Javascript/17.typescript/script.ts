@@ -93,6 +93,20 @@ const student: IStudent = {
 // student.name = "miri"
 console.log(student.name);
 
+//union type
+
+type UnionType = boolean | string | number | null | undefined;
+
+// litheral type
+
+type LitheralType = "a" | "b" | "c"
+
+// let test:LitheralType = "a" 
+// let test:LitheralType = "d"  //error
+
+type ApiResponse = "pending" | "success" | "error"
+
+// let response: ApiResponse = "success"
 
 type Genre = {
     id: string,
@@ -101,32 +115,214 @@ type Genre = {
     description: string
 }
 
-const genres: Genre[]=  [
-        {
-            id: "1",
-            name: "Technology",
-            bookCount: 50,
-            description: "Explore the latest advancements in technology, from artificial intelligence and programming languages to cybersecurity and blockchain."
-        },
-        {
-            id: "2",
-            name: "Fiction",
-            bookCount: 12,
-            description: "Immerse yourself in captivating fictional stories filled with adventure, mystery, and unforgettable characters."
-        },
-        {
-            id: "3",
-            name: "History",
-            bookCount: 35,
-            description: "Discover fascinating accounts of past events, influential figures, and pivotal moments that shaped civilizations."
-        },
-        {
-            id: "4",
-            name: "Self-Help",
-            bookCount: 20,
-            description: "Learn practical strategies for personal growth, productivity, and achieving a fulfilling life through expert advice and inspiration."
-        }
-    ]
+const genres: Genre[] = [
+    {
+        id: "1",
+        name: "Technology",
+        bookCount: 50,
+        description: "Explore the latest advancements in technology, from artificial intelligence and programming languages to cybersecurity and blockchain."
+    },
+    {
+        id: "2",
+        name: "Fiction",
+        bookCount: 12,
+        description: "Immerse yourself in captivating fictional stories filled with adventure, mystery, and unforgettable characters."
+    },
+    {
+        id: "3",
+        name: "History",
+        bookCount: 35,
+        description: "Discover fascinating accounts of past events, influential figures, and pivotal moments that shaped civilizations."
+    },
+    {
+        id: "4",
+        name: "Self-Help",
+        bookCount: 20,
+        description: "Learn practical strategies for personal growth, productivity, and achieving a fulfilling life through expert advice and inspiration."
+    }
+]
 
 
 // interface keyword
+
+
+// type Student ={
+//     id: "bdu123",
+//     name: string,
+//     age: number,
+//     faculty: string,
+//     // hobbies: string[],
+//     hobbies: Array<string>
+// }
+interface Student {
+    id: "bdu123",
+    name: string,
+    age: number,
+    faculty: string,
+    // hobbies: string[],
+    hobbies: Array<string>
+}
+
+// interface A {
+//     a: string,
+//     c: string
+// }
+
+interface A {
+    a: string
+}
+
+interface A {
+    c: string
+}
+
+interface B extends A{
+    b: string
+}
+
+let variable: B = {
+    a: "html",
+    b: "css",
+    c: "typescript"
+}
+
+
+// intersection of type
+
+type Human ={
+    firstName: string
+    lastName: string
+}
+
+type Employee ={
+    employeeId: number,
+    salary: number,
+    department: string
+}
+
+type Person = Human & Employee
+
+// const employee: Employee & Human = {
+//     firstName: "Miri",
+//     lastName: "Huseynov",
+//     employeeId: 1,
+//     salary: 2000,
+//     department: "IT"
+// }
+const employee: Person = {
+    firstName: "Miri",
+    lastName: "Huseynov",
+    employeeId: 1,
+    salary: 2000,
+    department: "IT"
+}
+
+
+interface Teacher{
+    name: string,
+    readonly  age: number,
+    subject?: string,
+    salary?: number
+    getInfo?: ()=>void
+}
+
+const teacher:Teacher = {
+    name: "Kanan Amirov",
+    age: 27
+}
+
+
+
+// teacher.age = 37 // error
+
+console.log(teacher);
+
+
+interface Add {
+    (a: number, b: number): number;
+  }
+  
+  const add: Add = (a, b) => a + b;
+  console.log(add(5, 3)); // Output: 8
+
+//never
+
+function throwError(message: string): never {
+    throw new Error(message);
+}
+
+function infinite(): never {
+    while (true) {
+        console.log("hello");
+    }
+}
+
+//functions
+
+// function sum(a:number,b:number):number{
+//     return a+b
+// }
+// console.log(sum(2,3));
+
+const sum = (a: number, b: number): number | string => {
+    if (a < 0 || b < 0) {
+        return "only positive numbers are allowed"
+    }
+    
+    return a+b
+}
+
+console.log(sum(-2, 3));
+
+
+function userInfo(name: string, surname: string, age: number = 16): string{
+    return `I am ${name} ${surname} and I am ${age} years old`
+}
+
+console.log(userInfo("miri", "huseynov"));
+console.log(userInfo("sabina", "kardeshova", 25));
+
+
+function calcSum(a:number, b:number, c?:number){
+   if (c !==undefined) {
+    return a+b+c
+   }
+   return a+b
+}
+
+console.log(calcSum(1,2));
+
+console.log(calcSum(1,2,3));
+// console.log(calcSum(1,2,3, 4)); //error
+
+
+function sumOfAllArguments(...args: number[]): number {
+    let sum = 0;
+    return args.reduce((sum, current) => sum + current, 0);
+}
+
+console.log(sumOfAllArguments(3,4,5));
+console.log(sumOfAllArguments(3,4,5,6));
+console.log(sumOfAllArguments(3,4,5,6,7));
+
+const greeting = (username: string): void=>{
+    console.log(`Hello, ${username}`);
+}
+greeting("Miri");
+
+
+//type assortion
+
+// type StudentType =  { id: number; name: string }
+
+// function createStudent(student: StudentType): void {
+//     console.log(`Welcome, ${student.name}!`);
+//   }
+  
+  
+//   createStudent({id: 123, name: "lorem", age: 23} as StudentType);
+
+// const studentWithExtras = { id: 1, name: "John", age: 20 };
+// createStudent(studentWithExtras as { id: number; name: string }); // Bypasses the error
+
+
