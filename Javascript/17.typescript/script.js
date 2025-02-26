@@ -152,3 +152,61 @@ greeting("Miri");
 //   createStudent({id: 123, name: "lorem", age: 23} as StudentType);
 // const studentWithExtras = { id: 1, name: "John", age: 20 };
 // createStudent(studentWithExtras as { id: number; name: string }); // Bypasses the error
+//tuple
+var userData = ["nijat", 85];
+// userData.push("hello")
+// const endpoints = {
+//     USERS: "users",
+//     PRODUCTS: "products",
+//     ORDERS: "orders",
+// }
+var Endpoints;
+(function (Endpoints) {
+    Endpoints["USERS"] = "users";
+    Endpoints["PRODUCTS"] = "products";
+    Endpoints["ORDERS"] = "orders";
+})(Endpoints || (Endpoints = {}));
+console.log(Endpoints.PRODUCTS);
+var Color;
+(function (Color) {
+    Color[Color["RED"] = 1] = "RED";
+    Color[Color["GREEN"] = 2] = "GREEN";
+})(Color || (Color = {}));
+// enum Status{
+//     PENDING,
+//     SUCCESS,
+//     ERROR
+// }
+var Status;
+(function (Status) {
+    Status[Status["PENDING"] = 12] = "PENDING";
+    Status[Status["SUCCESS"] = 13] = "SUCCESS";
+    Status[Status["ERROR"] = 14] = "ERROR";
+})(Status || (Status = {}));
+console.log(Status.SUCCESS);
+//generics
+function identity(value) {
+    return value;
+}
+identity(true);
+identity("hello");
+function getFirstElement(arr) {
+    return arr[0];
+}
+console.log(getFirstElement([1, 2, 3]));
+console.log(getFirstElement(["nijat", "ruqayya", "nihad"]));
+console.log(getFirstElement([false, true, true]));
+var obj = {
+    content: "lorem"
+};
+var obj2 = {
+    content: 123
+};
+var cats = {
+    miffy: { age: 10, breed: "Persian" },
+    boris: { age: 5, breed: "Maine Coon" },
+    mordred: { age: 16, breed: "British Shorthair" },
+};
+var user = {
+    age: 12,
+};

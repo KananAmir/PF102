@@ -326,3 +326,156 @@ greeting("Miri");
 // createStudent(studentWithExtras as { id: number; name: string }); // Bypasses the error
 
 
+//tuple
+
+const userData: readonly[string, number, boolean?] = ["nijat", 85]
+
+// userData.push("hello")
+
+// const endpoints = {
+//     USERS: "users",
+//     PRODUCTS: "products",
+//     ORDERS: "orders",
+// }
+
+enum Endpoints {
+    USERS = "users",
+    PRODUCTS = "products",
+    ORDERS = "orders",
+}
+
+console.log(Endpoints.PRODUCTS);
+
+enum Color {
+    RED = 1,
+    GREEN = 2,
+}
+
+// enum Status{
+//     PENDING,
+//     SUCCESS,
+//     ERROR
+// }
+
+enum Status{
+    PENDING = 12,
+    SUCCESS,
+    ERROR
+}
+console.log(Status.SUCCESS);
+
+
+//generics
+
+function identity<T>(value: T): T {
+    return value;
+  }
+
+  identity<boolean>(true)
+  identity<string>("hello")
+
+
+function getFirstElement<T> (arr: T[]): T {
+    return arr[0]
+}
+
+console.log(getFirstElement<number>([1,2,3]));
+console.log(getFirstElement<string>(["nijat", "ruqayya", "nihad"]));
+console.log(getFirstElement<boolean>([false, true, true]));
+
+
+interface StorageBox<T> {
+    content: T
+}
+
+const obj:StorageBox<string> = {
+    content: "lorem"
+}
+const obj2:StorageBox<number> = {
+    content: 123
+}
+
+//utility types
+
+// interface User {
+//     name: string;
+//     email: string;
+//     age: number
+// }
+//partial
+
+// const user:Partial<User> = {
+//     name: "nijat",
+// }
+
+//required
+
+
+// interface User {
+//     name?: string;
+//     email: string;
+//     age?: number
+// }
+// const user:Required<User> = {
+//     name: "nijat",
+//     email: "nijat@gmail.com",
+//     age: 20
+// }
+
+//readonly
+// interface User {
+//     name?: string;
+//     email: string;
+//     age?: number
+// }
+// const user:Readonly<User> = {
+//     name: "nijat",
+//     email: "nijat@gmail.com",
+//     age: 20
+// }
+
+// user.age = 22
+
+// console.log(user);
+
+
+// Record<Keys, Type>
+
+type CatName = "miffy" | "boris" | "mordred"; //litheral
+ 
+interface CatInfo {
+  age: number;
+  breed: string;
+}
+ 
+const cats: Record<CatName, CatInfo> = {
+  miffy: { age: 10, breed: "Persian" },
+  boris: { age: 5, breed: "Maine Coon" },
+  mordred: { age: 16, breed: "British Shorthair" },
+};
+
+//pick
+
+// interface User {
+//     name: string;
+//     email: string;
+//     age: number
+// }
+
+// const user: Pick<User,"name"|"email"> = {
+//     name: "sabina",
+//     email: "sabina@code.edu.az"
+// }
+
+//omit
+
+
+interface User {
+    name: string;
+    email: string;
+    age: number
+}
+
+const user: Omit<User,"name"|"email"> = {
+    age: 12,
+}
