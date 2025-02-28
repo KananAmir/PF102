@@ -1,0 +1,36 @@
+.header {
+    background-color: #2d2d2d;
+    color: white;
+    padding: 1rem;
+  }
+  
+  .nav-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  
+  .nav-item {
+    font-size: 1.125rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-decoration: none;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+  
+    &:hover {
+      color: #f4a261;
+    }
+  
+    &.active {
+      color: #f4a261;
+    }
+  
+    .badge {
+      margin-left: 0.25rem;
+      color: #e63946;
+    }
+  }
+  
