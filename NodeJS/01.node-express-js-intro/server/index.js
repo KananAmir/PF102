@@ -8,9 +8,14 @@ const app = express()
 const port = 8080
 const corsOptions = {
     origin: 'http://localhost:5173',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    methods: "GET, POST, PUT, DELETE, PATCH",// default
+    allowedHeaders: "Content-Type, Authorization", //
+    exposedHeaders: "Authorization",
+    credentials: true,     
     }
     
+    limit = 5
 app.use(cors(corsOptions))
 app.use(express.json())
 // app.use(cors())
@@ -91,6 +96,21 @@ app.get("/api/products", (req, res) => {
     res.status(200).json({
         data: products,
         total: products.length,
+        error: null
+    })
+})
+
+//pagination
+app.get("/api/products/page", (req, res) => {
+    const {pageNumber, limit} = req.query
+    const startIndex = (pageNumber - 1) * limit
+    const endIndex = pageNumber * limit
+
+    const pageProducts = products.slice(startIndex, endIndex)
+    res.json({
+        data: pageProducts,
+        total: products.length,
+        pageSize: Math.ceil(products.length / limit),
         error: null
     })
 })
