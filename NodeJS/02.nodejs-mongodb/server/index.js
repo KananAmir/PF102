@@ -1,8 +1,23 @@
 const express = require('express')
 const mongoose = require("mongoose")
+const cors = require("cors")
+const dotenv = require("dotenv")
 const app = express()
-const port = 8000
 
+
+dotenv.config()
+
+
+//middleware
+
+const logger = (req, res, next)=>{
+    console.log(req.method); 
+    next()
+}
+
+app.use(logger)
+
+app.use(cors())
 app.use(express.json())
 
 // const {Schema} = mongoose; 
@@ -28,12 +43,15 @@ const ProductSchema = new Schema({
     category: { type: String, required: true },
     image: { type: String, required: true },
     // raiting: RatingSchema,
+}, {
+    versionKey: false,
+    timestamps: true
 })
 
 const Product = mongoose.model("Product", ProductSchema)
 
 //get all products
-app.get('/api/products', async (req, res) => {
+app.get('/api/products', logger , async (req, res) => {
     try {
         const products = await Product.find()
         res.status(200).json({
@@ -100,15 +118,26 @@ app.delete("/api/products/:id", async (req, res) => {
     }
 })
 
-//add product
-app.post("/api/products", async (req, res) => {
+const validate = (req, res, next)=>{
     const { title, price, description, category, image } = req.body
+
+    if (!title || !price || !description || !category || !image) {
+        return res.status(400).json({
+            message: "All fields are required"
+        })
+    }
+
+    next()
+}
+
+//add product
+app.post("/api/products", validate, async (req, res) => {
     try {
-        if (!title || !price || !description || !category || !image) {
-            return res.status(400).json({
-                message: "All fields are required"
-            })
-        }
+        // if (!title || !price || !description || !category || !image) {
+        //     return res.status(400).json({
+        //         message: "All fields are required"
+        //     })
+        // }
 
         const newProduct = new Product({ ...req.body })
 
@@ -157,12 +186,19 @@ app.put("/api/products/:id", async (req, res) => {
     }
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}, http://localhost:${port}`)
+
+const PORT = process.env.PORT || 8000
+const DB = process.env.DB_STRING.replace("<password>", process.env.PASSWORD)
+
+console.log(DB);
+
+
+app.listen(PORT, () => {
+    console.log(`Example app listening on port ${PORT}, http://localhost:${PORT}`)
 })
 
 
-mongoose.connect("mongodb+srv://amirovknn:pf102@cluster0.poq88.mongodb.net/pf102Products?retryWrites=true&w=majority&appName=Cluster0").then(() => {
+mongoose.connect(DB).then(() => {
     console.log("Connected to MongoDB");
 
 }).catch((err) => {

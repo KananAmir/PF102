@@ -1,0 +1,8 @@
+folder structure
+middleware
+timestamps
+versionKey
+env
+populate
+countDocument
+search,sort,pagination
