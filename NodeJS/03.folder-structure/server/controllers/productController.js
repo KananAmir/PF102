@@ -1,11 +1,45 @@
 const Product = require("../models/productModel")
 
 const getAllProducts = async (req, res) => {
+    // const { title, sortBy, order = "asc" } = req.query // default value
+    const { title, sortBy, order, page, limit} = req.query
+    
+    const filter = {}
+    if(title){
+        filter.title =  {
+            $regex: title,
+            $options: "i"
+        }
+    }
+    
     try {
-        const products = await Product.find()
+        // const products = await Product.find(!title ? {} : {
+        //     title: {
+        //         $regex: title,
+        //         $options: "i"
+        //     }
+        // })
+        const products = await Product.find(filter)
+        .populate("category", "title productCount")
+        .sort({
+            [sortBy]: order === "asc" ? 1 : -1
+        })
+        .skip((parseInt(page) - 1) * parseInt(limit))
+        .limit(parseInt(limit))
+
+        const totalCount = await Product.countDocuments()
+
+
+        console.log(totalCount);
+        
         res.status(200).json({
             message: "Success",
-            data: products
+            data: products,
+            pagination: {
+                totalCount: totalCount,
+                pageNumber: parseInt(page),
+                totalPage: Math.ceil(totalCount / limit)
+            }
         })
     } catch (error) {
         res.status(500).json({
@@ -86,16 +120,16 @@ const postProduct = async (req, res) => {
 }
 
 const editProduct = async (req, res) => {
-    const {id} =req.params
+    const { id } = req.params
     // const { title, price, description, category, image } = req.body
 
     try {
-        const updatedProduct = await Product.findByIdAndUpdate(id, {...req.body})
+        const updatedProduct = await Product.findByIdAndUpdate(id, { ...req.body })
 
         console.log(updatedProduct);
 
         if (!updatedProduct) {
-           return res.status(404).json({
+            return res.status(404).json({
                 message: "Product not found"
             })
         }
@@ -104,7 +138,7 @@ const editProduct = async (req, res) => {
             message: "Product Updated",
             data: updatedProduct
         })
-        
+
     } catch (error) {
         res.status(500).json({
             message: "Error",
