@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import { FaUpload } from "react-icons/fa6";
+import { BASE_URL } from './constants';
 
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
 
   const getAllProducts = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/products/')
+      const response = await fetch(`${BASE_URL}/products`)
       const { data } = await response.json()
       setProducts(data)
 
@@ -30,7 +31,7 @@ function App() {
   }
   const getAllCategories = async () => {
     try {
-      const response = await fetch('http://localhost:8000/api/categories/')
+      const response = await fetch(`${BASE_URL}/categories`)
       const { data } = await response.json()
       setCategories(data)
       console.log(data);
