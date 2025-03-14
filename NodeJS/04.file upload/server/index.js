@@ -34,28 +34,35 @@ app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 //     console.log(req.file)
 //   })
 
-// const storage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, 'uploads/')
-//     },
-//     filename: function (req, file, cb) {
-//       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-//     //   cb(null, file.fieldname + '-' + uniqueSuffix)
-//       cb(null, uniqueSuffix + "-" + file.originalname)
-//     }
-//   })
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+    //   cb(null, file.fieldname + '-' + uniqueSuffix)
+      cb(null, uniqueSuffix + "-" + file.originalname)
+    }
+  })
 
-//   const upload = multer({ 
-//     storage: storage, 
-//     limits: { fileSize: 1024 * 1024 * 5 }, // 5MB
-//     fileFilter: function (req, file, cb) {
-//         if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/gif') {
-//           cb(null, true)
-//         } else {
-//           cb(new Error('Only .jpeg | .png | .jpg | .gif  files are allowed'), false)
-//         }
-//       } 
-// })
+  const upload = multer({ 
+    storage: storage, 
+    limits: { fileSize: 1024 * 1024 * 5 }, // 5MB
+    // fileFilter: function (req, file, cb) {
+    //     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/gif') {
+    //       cb(null, true)
+    //     } else {
+    //       cb(new Error('Only .jpeg | .png | .jpg | .gif  files are allowed'), false)
+    //     }
+    //   } 
+    // fileFilter: function (req, file, cb) {
+    //     if (file.mimetype.startsWith('image/')) {
+    //       cb(null, true)
+    //     } else {
+    //       cb(new Error('Only .jpeg | .png | .jpg | .gif  files are allowed'), false)
+    //     }
+    //   } 
+})
 
 
 //   app.post('/imageUpload', upload.single('image'), function (req, res, next) {

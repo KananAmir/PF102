@@ -72,6 +72,7 @@ function App() {
           image: null
         })
         getAllProducts()
+        // e.target.reset()
       }
 
     } catch (error) {
@@ -113,26 +114,34 @@ function App() {
         onSubmit={handleSubmit}
       >
         <div>
-          <input type="text" name="name" placeholder="Enter Product Name" onChange={(e) => {
+          <input type="text" name="name" placeholder="Enter Product Name" 
+          value={formData.title}
+          onChange={(e) => {
             setFormData({ ...formData, title: e.target.value })
           }} />
         </div>       <div>
-          <input type="number" name="price" placeholder="Enter Product Price" onChange={(e) => {
+          <input type="number" name="price" placeholder="Enter Product Price" 
+          value={formData.price}
+          onChange={(e) => {
             setFormData({ ...formData, price: e.target.value })
           }} />
         </div>
         <div>
-          <input type="text" name="description" placeholder="Enter Product Description" onChange={(e) => {
+          <input type="text" name="description" placeholder="Enter Product Description" 
+          value={formData.description}
+          onChange={(e) => {
             setFormData({ ...formData, description: e.target.value })
           }} />
         </div>
         <div>
-          <select name="" id="" onChange={(e) => {
+          <select name="" id="" 
+          value={formData.category}
+          onChange={(e) => {
             setFormData({ ...formData, category: e.target.value })
           }}>
             <option value="" selected disabled>Select Category</option>
             {categories.map((category) => (
-              <option value={category._id} key={category._id}>{category.title}</option>
+              <option value={category._id} key={category._id} >{category.title}</option>
             ))}
           </select>
         </div>
@@ -140,7 +149,8 @@ function App() {
           <FaUpload style={{ fontSize: "2rem", cursor: "pointer" }}
             onClick={() => { fileInputRef.current.click() }}
           />
-          <input type="file" name="image" onChange={(e) => {
+          <input type="file" name="image" 
+          onChange={(e) => {
             // console.log(e.target.files[0])
             setFormData({ ...formData, image: e.target.files[0] })
           }}
