@@ -103,7 +103,7 @@ const postProduct = async (req, res) => {
     // console.log(req.file);
     // console.log(`http://localhost:8000/${req.file.path}`);
     // console.log(req.body);
-    const imageUrl = `http://localhost:8000/${req.file.path}`
+    const imageUrl = `http://localhost:8000/${req.file?.path}`
     try {
         const newProduct = new Product({ ...req.body, image: imageUrl })
 

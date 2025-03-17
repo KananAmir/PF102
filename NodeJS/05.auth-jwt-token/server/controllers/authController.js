@@ -35,21 +35,20 @@ const login = async (req, res) =>{
 
     const existUser = await User.findOne({email})
 
-//     if(!existUser){
-//         return res.status(400).json({status: 'error', message: 'User not found | No such user with this email!'});
-//     }
-//     console.log(email, password);
+    // if(!existUser){
+    //     return res.status(400).json({status: 'error', message: 'User not found | No such user with this email!'});
+    // }
+    // console.log(email, password);
     
-//     const isValidPassword = await bcrypt.compare(password, existUser.password);
+    // const isValidPassword = await bcrypt.compare(password, existUser.password);
 
-//     if(!isValidPassword){
-//         return res.status(400).json({status: 'error', message: 'Invalid password'});
-//     }
+    // if(!isValidPassword){
+    //     return res.status(400).json({status: 'error', message: 'Invalid password'});
+    // }
 
     if(!existUser || !(await bcrypt.compare(password, existUser.password))){
         return res.status(400).json({status: 'error', message: 'Invalid email or password'});
     }
-
 
     const token = jwt.sign(
         {username: existUser.username, role: existUser.role}, 
