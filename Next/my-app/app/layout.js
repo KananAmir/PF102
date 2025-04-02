@@ -7,8 +7,10 @@ export default function RootLayout({ children }) {
       <body
       >
         <Header/>
-        {children}
-        <footer>
+        <div className="container mx-auto">
+         {children}
+        </div>
+        <footer  className='container mx-auto'>
           I am Footer
         </footer>
       </body>

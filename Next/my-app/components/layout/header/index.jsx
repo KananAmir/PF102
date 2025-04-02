@@ -8,7 +8,7 @@ const Header = () => {
     console.log(pathname);
     
   return (
-    <header>
+    <header className='container mx-auto'>
     <nav>
       <ul className="flex gap-2">
         <li>
